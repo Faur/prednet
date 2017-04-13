@@ -88,4 +88,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Don't track data or models
 *.hkl
+*.zip
+*.hdf5
+*.json
