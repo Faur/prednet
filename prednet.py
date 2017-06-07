@@ -20,7 +20,7 @@ class PredNet(Recurrent):
         R_stack_sizes: number of channels in the representation (R) modules.
             Length must equal length of stack_sizes, but the number of channels per layer can be different.
         A_filt_sizes: filter sizes for the target (A) modules.
-            Has length of 1 - len(stack_sizes).
+            Has length of 1 + len(stack_sizes).
             Ex. (3, 3) would mean that targets for layers 2 and 3 are computed by a 3x3 convolution of the errors (E)
                 from the layer below (followed by max-pooling)
         A_filt_sizes: filter sizes for the prediction (Ahat) modules.
@@ -213,9 +213,9 @@ class PredNet(Recurrent):
                 self.conv_layers[c][l].build(in_shape)
                 self.trainable_weights += self.conv_layers[c][l].trainable_weights
 
-        if self.initial_weights is not None:
-            self.set_weights(self.initial_weights)
-            del self.initial_weights
+        # if self.initial_weights is not None:
+        #     self.set_weights(self.initial_weights)
+        #     del self.initial_weights
 
         self.states = [None] * self.nb_layers*3
 
